@@ -9,6 +9,14 @@ class User(models.Model):
     email = models.EmailField()
     mobile_number = models.CharField(max_length=20)
     user_address = models.CharField(max_length=50)
+    type_choices = [
+        ('CS', 'Customer Support'),
+        ('S', 'Supplier'),
+        ('CU', 'Customer'),
+        ('CO', 'Courier'),
+    ]
+    type = models.CharField(max_length=2, choices=type_choices)
+
 
 
 class Supplier(User):
