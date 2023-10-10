@@ -18,7 +18,6 @@ class User(models.Model):
     type = models.CharField(max_length=2, choices=type_choices)
 
 
-
 class Supplier(User):
     company_name = models.CharField(max_length=50)
 
@@ -41,6 +40,4 @@ class Courier(User):
 
 
 class CustomerSupport(User):
-    support_name = models.CharField(max_length=50)
-    ticket_id = models.ForeignKey(CustomerTicket, on_delete=models.CASCADE)
-
+    ticket_id = models.ForeignKey(CustomerTicket, models.SET_NULL, null=True)
