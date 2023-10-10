@@ -19,3 +19,6 @@ class TicketCategory(models.Model):
     ticket_category_id = models.BigAutoField(primary_key=True)
     ticket_id = models.ForeignKey(CustomerTicket, on_delete=models.CASCADE)
     category_name = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = 'Ticket category'
