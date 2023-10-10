@@ -7,6 +7,10 @@ class User(AbstractUser):
     user_id = models.BigAutoField(primary_key=True)
     mobile_number = models.CharField(max_length=20)
     user_address = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=150, blank=False)
+    last_name = models.CharField(max_length=150, blank=False)
+    email = models.EmailField(blank=False)
+
     type_choices = [
         ('CS', 'Customer Support'),
         ('S', 'Supplier'),
