@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <style>
+    .Desktop1{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white
+    }
+
+    .Group5{
+    width: 100%;
+    height: 96px;
+    left: 0px;
+    top: 0px;
+    position: absolute
+    }
+
+    .Rectangle1{
+    width: 100%;
+    height: 96px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #239EB9
+    }
+
+    .ECommerce{
+    left: 92px;
+    top: 26px;
+    position: absolute;
+    color: white;
+    font-size: 36px;
+    font-family: Inter;
+    font-weight: 800;
+    word-wrap: break-word;
+    }
+
+    .price{
+    margin-left: 850px;
+    margin-top: 40px;
+    position: absolute;
+    color: black;
+    font-size: 28px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+    }
+
+    .quantity{
+    margin-left: 130px;
+    margin-top: 90px;
+    position: absolute;
+    color: black;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word
+    }
+
+    .container{
+    top: 200px;
+    left: 142px;
+    position: absolute;
+    width: 1300px;
+    height: 63%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+    }
+
+    .products{
+    width: 100%;
+    height: 120px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    }
+
+    html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+      position: relative; /* Set the body as a relative position */
+    }
+
+    .productName{
+    width: 600px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 15px;
+    position: relative;
+    color: black;
+    font-size: 30px;
+    font-family: Inter;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    }
+
+    .UserFill{
+    width: 67px;
+    height: 67px;
+    padding-left: 9.23px;
+    padding-right: 9.23px;
+    padding-top: 8.38px;
+    padding-bottom: 8.38px;
+    right: 0px;
+    top: 15px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.79px;
+    display: inline-flex
+    }
+
+    .logout{
+    right: 80px;
+    top: 37px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 600;
+    word-wrap: break-word;
+    }
+    .rectangles{
+    width: 100%;
+    height: 160px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background: #E9E7E7;
+    border-radius: 30px;
+    }
+
+    .productImage{
+      width:170px;
+      height:120px;
+    }
+    .productImage img{
+    width: 130px;
+    height: 130px;
+    margin-left: 20px;
+    margin-top: 15px;
+    position: relative;
+    border-radius: 10px;
+
+    }
+
+    .btnRate{
+    width: 178px;
+    height: 66px;
+    position: absolute;
+    right: 20px;
+    margin-top: 25px;
+    border-radius: 10px;
+    background: rgba(0, 71, 171, 0.80);
+    }
+
+  .Rectangle2 a, .Rectangle3 a {
+      font-size: 45px;
+      font-family: Inter;
+      font-weight: 400;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black; /* Set the color to black or your preferred color */
+      text-decoration: none; /* Remove the underline */
+      margin-top: 7px;
+    }
+
+    .Rectangle2, .Rectangle3 {
+      width: 300px;
+      height: 65px;
+      left: 0;
+      top: 0;
+      position: absolute;
+    }
+
+    .Rectangle2 {
+      background: #0047AB;
+    }
+
+    .Rectangle3 {
+      background: #E9E7E7;
+      left: 533px;
+    }
+    .footer {
+      width: 100%;
+      height: 51px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: white; /* Set the background color of the footer */
+    }
+
+    .Rectangle10 {
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      background: black;
+      top: 0;
+      left: 0;
+    }
+
+    .ECommerceFooter {
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 15px;
+      position: absolute;
+      color: black;
+      font-size: 30px;
+      font-family: Inter;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .productDescriptions{
+      width: 600px;
+      height:100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .productReview{
+      height: 80px;
+      position: relative;
+      margin-left: 20px;
+    }
+    .dateTime{
+      margin: 0;
+    }
+
+    .dateTime p{
+      margin: 0;
+      height: 100%;
+      margin-left: 20px;
+    }
+    .rate{
+      width: 100%;
+      text-align: end;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-right: 50px;
+    }
+
+    .rating {
+      font-size: 80px;
+      cursor: pointer;
+      text-align: end;
+    }
+
+    .thumbs {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+  <div class="Desktop1">
+    <div class="Group5">
+      <div class="Rectangle1"></div>
+      <div class="ECommerce">E-Commerce</div>
+
+      <div class="UserFill" >
+        <a class="logout" href="{% url 'Account:logout' %}" style="text-decoration: none;">Logout</a>
+        <div class="Ellipse46" style="width: 27.92px; height: 27.92px; background: white; border-radius: 9999px"></div>
+        <div class="Ellipse45" style="width: 48.54px; height: 19.54px; background: white"></div>
+      </div>
+    </div>
+  </div>
+  <div class="Group4" style="width: 963px; height: 90px; left: 330px; top: 120px; position: absolute">
+    <div class="Rectangle2"><a href="{% url 'Review:toReview' %}">To Review</a></div>
+    <div class="Rectangle3"><a href="{% url 'Review:myReview' %}">My Review</a></div>
+  </div>
+    <div class="container">
+    <div class="products">
+    {% for review in reviews %}
+      <div class="rectangles" data-product-id="{{ review.product.id }}">
+        <div class="productImage">
+            <img src="{{ review.orderitem_id.product.picture.url }}" />
+        </div>
+        <div class="productDescriptions">
+          <div class="productName">{{ review.orderitem_id.product.product_name }}</div>
+          <div class="productReview">Review Comment: {{ review.comment }}</div>
+          <div class="dateTime"><p>{{ review.date }} | {{ review.time }}</p></div>
+        </div>
+        <div class="rate">
+          <div>
+            <span class="thumbs" id="thumbs-up">&#128077; &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp</span>
+            <span class="thumbs" id="thumbs-down">&#128078;</span>
+          </div>
+          <div class="rating">
+            <span class="star" data-rating="1">★</span>
+            <span class="star" data-rating="2">★</span>
+            <span class="star" data-rating="3">★</span>
+            <span class="star" data-rating="4">★</span>
+            <span class="star" data-rating="5">★</span>
+            <input type="hidden" name="rating" id="rating">
+          </div>
+        </div>
+
+      </div>
+    {% endfor %}
+  </div>
+</div>
+  <div class="footer">
+    <div class="Rectangle10"></div>
+    <div class="ECommerceFooter">E-Commerce</div>
+  </div>
+
+
+</html>

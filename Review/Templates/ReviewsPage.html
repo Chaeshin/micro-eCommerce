@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <style>
+    .Desktop1{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white
+    }
+
+    .Group5{
+    width: 100%;
+    height: 96px;
+    left: 0px;
+    top: 0px;
+    position: absolute
+    }
+
+    .Rectangle1{
+    width: 100%;
+    height: 96px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #239EB9
+    }
+
+    .ECommerce{
+    left: 92px;
+    top: 26px;
+    position: absolute;
+    color: white;
+    font-size: 36px;
+    font-family: Inter;
+    font-weight: 800;
+    word-wrap: break-word;
+    }
+
+    .containerProduct{
+    top: 130px;
+    left: 140px;
+    background:#0047AB;
+    position: absolute;
+    width: 600px;
+    height: 71%;
+    border-radius: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    }
+
+    .containerReview{
+    top: 130px;
+    left: 840px;
+    background:#D9D9D9;
+    position: absolute;
+    width: 600px;
+    height: 71%;
+    border-radius: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    }
+    .productName, .productDescription, .Description, .orderQuantity, .orderPrice{
+      width:100%;
+      overflow-wrap: anywhere;
+    }
+    .Description, .productDescription{
+      margin-top: 20px;
+    }
+    .orderQuantity, .orderPrice{
+      margin-top: 10px;
+    }
+
+    .Description p{
+      width:100%;
+      margin: 0;
+      font-size: 50px;
+      color:white;
+      text-align-last:center;
+    }
+
+    .productDescription p, .orderQuantity p, .orderPrice p{
+      width:87%;
+      margin: 0;
+      margin-left: 40px;
+      font-size: 20px;
+      color:white;
+    }
+    .productName p{
+      width:100%;
+      margin: 0;
+      font-size: 35px;
+      color:white;
+      text-align-last:center;
+    }
+
+    .productImage {
+      width:150px;
+      height: 150px;
+    }
+
+    .productImage img{
+      width:140px;
+      height: 140px;
+      border-radius: 10%;
+    }
+    html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+      position: relative; /* Set the body as a relative position */
+    }
+
+    .UserFill{
+    width: 67px;
+    height: 67px;
+    padding-left: 9.23px;
+    padding-right: 9.23px;
+    padding-top: 8.38px;
+    padding-bottom: 8.38px;
+    right: 0px;
+    top: 15px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.79px;
+    display: inline-flex
+    }
+
+    .logout{
+    right: 80px;
+    top: 37px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 600;
+    word-wrap: break-word;
+    }
+
+    .footer {
+      width: 100%;
+      height: 51px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: white; /* Set the background color of the footer */
+    }
+
+    .Rectangle10 {
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      background: black;
+      top: 0;
+      left: 0;
+    }
+
+    .ECommerceFooter {
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 15px;
+      position: absolute;
+      color: black;
+      font-size: 30px;
+      font-family: Inter;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .rating {
+      font-size: 80px;
+      cursor: pointer;
+      margin-left: 80px;
+    }
+
+    .star {
+      display: inline-block;
+      margin-right: 5px;
+      color: grey; /* Default star color */
+    }
+
+    .star.selected {
+      color: gold; /* Color for selected stars */
+    }
+
+    .comment {
+      width: 500px;
+      margin-left: 30px;
+      margin-top: 20px;
+    }
+
+    textarea.non-resizable {
+      resize: none;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      box-sizing: border-box;
+      font-size: 20px;
+    }
+    .btnSubmit{
+      display: grid;
+      align-self: center;
+    }
+
+    .btnSubmit button{
+      width: 350px;
+      height: 55px;
+      border-radius: 25px;
+      align: center;
+      font-size: 30px;
+      border: 2px solid #ccc; /* Replace 'yourBorderColor' with the desired color code */
+      background-color: #0047AB; /* Replace 'yourBackgroundColor' with the desired color code */
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="Desktop1">
+    <div class="Group5">
+      <div class="Rectangle1"></div>
+      <div class="ECommerce">E-Commerce</div>
+
+      <div class="UserFill" >
+        <a class="logout" href="{% url 'Account:logout' %}" style="text-decoration: none;">Logout</a>
+        <div class="Ellipse46" style="width: 27.92px; height: 27.92px; background: white; border-radius: 9999px"></div>
+        <div class="Ellipse45" style="width: 48.54px; height: 19.54px; background: white"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="containerProduct" >
+    <div class="Description"> <p>Product Description</p> </div>
+    <div class="productImage"> <img src="{{order_item.product.picture.url}}"> </div>
+    <div class="productName"> <p>{{ order_item.product.product_name }} </p> </div>
+    <div class="productDescription"> <p>Description:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ order_item.product.description }}</p> </div>
+    <div class="orderQuantity"> <p>Quantity: {{ order_item.quantity }}</p> </div>
+    <div class="orderPrice"> <p>Price: ₱{{ order_item.price }}</p> </div>
+  </div>
+  <form id="reviewForm" method="post">
+  {% csrf_token %}
+    <input type="hidden" name="orderitem_id" value="{{ orderitem_id }}">
+    <div class="containerReview">
+      <div class="comment">
+        <textarea class="non-resizable" id="comment" name="comment" rows="13" cols="45" placeholder="Enter Review Comment" maxlength="255"></textarea>
+      </div>
+      <div class="rating">
+        <span class="star" data-rating="1">★</span>
+        <span class="star" data-rating="2">★</span>
+        <span class="star" data-rating="3">★</span>
+        <span class="star" data-rating="4">★</span>
+        <span class="star" data-rating="5">★</span>
+        <input type="hidden" name="rating" id="rating">
+      </div>
+      <div class="btnSubmit">
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+  <div class="footer">
+    <div class="Rectangle10"></div>
+    <div class="ECommerceFooter">E-Commerce</div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById('rating');
+    const comment = document.getElementById('comment');
+
+  stars.forEach((star) => {
+    star.addEventListener("click", function () {
+      const rating = this.dataset.rating;
+      document.getElementById("rating").value = rating;
+
+      // Remove 'selected' class from all stars
+      stars.forEach((s) => s.classList.remove("selected"));
+
+      // Add 'selected' class to the clicked star and previous stars
+      let clickedStarIndex = Array.from(stars).indexOf(this);
+      for (let i = 0; i <= clickedStarIndex; i++) {
+        stars[i].classList.add("selected");
+      }
+    });
+  });
+});</script>
+</body>
+</html>
