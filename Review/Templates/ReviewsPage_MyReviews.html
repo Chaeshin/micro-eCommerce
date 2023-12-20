@@ -35,6 +35,7 @@
     font-family: Inter;
     font-weight: 800;
     word-wrap: break-word;
+    text-decoration: none;
     }
 
     .price{
@@ -194,11 +195,11 @@
     }
 
     .Rectangle2 {
-      background: #0047AB;
+      background: #E9E7E7;
     }
 
     .Rectangle3 {
-      background: #E9E7E7;
+      background: #0047AB;
       left: 533px;
     }
     .footer {
@@ -255,16 +256,20 @@
     }
     .rate{
       width: 100%;
+      height: 100%;
       text-align: end;
       position: relative;
       display: flex;
       flex-direction: column;
       margin-right: 50px;
+      align-items: center;
     }
 
     .rating {
+      width: 100%;
+      height: 100%;
+      margin-top: 25px;
       font-size: 80px;
-      cursor: pointer;
       text-align: end;
     }
 
@@ -272,13 +277,17 @@
       font-size: 24px;
       cursor: pointer;
     }
+
+    .star {
+      color: grey;
+    }
   </style>
 </head>
 
   <div class="Desktop1">
     <div class="Group5">
       <div class="Rectangle1"></div>
-      <div class="ECommerce">E-Commerce</div>
+      <a class="ECommerce" href="{% url 'Review:toReview' %}">E-Commerce</a>
 
       <div class="UserFill" >
         <a class="logout" href="{% url 'Account:logout' %}" style="text-decoration: none;">Logout</a>
@@ -294,33 +303,45 @@
     <div class="container">
     <div class="products">
     {% for review in reviews %}
-      <div class="rectangles" data-product-id="{{ review.product.id }}">
+      <div class="rectangles" data-product-id="{{ review.review_id }}">
         <div class="productImage">
-            <img src="{{ review.orderitem_id.product.picture.url }}" />
+            <a href="{% url 'Review:ViewProduct' product_id=review.product_id%}"><img src="{{ review.images.url }}" /></a>
         </div>
         <div class="productDescriptions">
-          <div class="productName">{{ review.orderitem_id.product.product_name }}</div>
+          <div class="productName">{{ review.product_name }}</div>
           <div class="productReview">Review Comment: {{ review.comment }}</div>
           <div class="dateTime"><p>{{ review.date }} | {{ review.time }}</p></div>
         </div>
         <div class="rate">
-          <div>
-            <span class="thumbs" id="thumbs-up">&#128077; &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp</span>
-            <span class="thumbs" id="thumbs-down">&#128078;</span>
+          <div class="rating" id="dynamic-rating-{{ review.review_id }}">
+    <!-- Stars will be dynamically added here based on the rate value -->
+            <input type="hidden" name="rating" id="rating" value="{{ review.rate }}">
           </div>
-          <div class="rating">
-            <span class="star" data-rating="1">★</span>
-            <span class="star" data-rating="2">★</span>
-            <span class="star" data-rating="3">★</span>
-            <span class="star" data-rating="4">★</span>
-            <span class="star" data-rating="5">★</span>
-            <input type="hidden" name="rating" id="rating">
-          </div>
+          <script>
+                    // JavaScript for dynamically setting star colors based on rate value
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const ratingContainer = document.getElementById('dynamic-rating-{{ review.review_id }}');
+                        const rateValue = parseInt(ratingContainer.querySelector('input[name="rating"]').value);
+
+                        for (let i = 1; i <= 5; i++) {
+                            const star = document.createElement('span');
+                            star.classList.add('star');
+                            star.innerHTML = '★';
+
+                            if (i <= rateValue) {
+                                star.style.color = 'gold'; // Set the color for rated stars
+                            }
+
+                            ratingContainer.appendChild(star);
+                        }
+                    });
+                </script>
         </div>
 
       </div>
     {% endfor %}
   </div>
+
 </div>
   <div class="footer">
     <div class="Rectangle10"></div>

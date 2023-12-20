@@ -35,23 +35,27 @@
     font-family: Inter;
     font-weight: 800;
     word-wrap: break-word;
+    text-decoration: none;
     }
 
     .price{
-    margin-left: 850px;
-    margin-top: 40px;
-    position: absolute;
+    width:100%;
+    height: 20px;
+    margin-left: 20px;
+    position: relative;
     color: black;
-    font-size: 28px;
+    font-size: 20px;
     font-family: Inter;
     font-weight: 400;
-    word-wrap: break-word;
+    word-wrap: break-word
     }
 
     .quantity{
-    margin-left: 130px;
-    margin-top: 90px;
-    position: absolute;
+    width:100%;
+    height:20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    position: relative;
     color: black;
     font-size: 20px;
     font-family: Inter;
@@ -94,13 +98,13 @@
       position: relative; /* Set the body as a relative position */
     }
     .productName{
-    width: 600px;
-    height: 40px;
-    margin-left: 130px;
+    width: 100%;
+    height: 80px;
+    margin-left: 20px;
     margin-top: 15px;
-    position: absolute;
+    position: relative;
     color: black;
-    font-size: 30px;
+    font-size: 45px;
     font-family: Inter;
     font-weight: 400;
     overflow: hidden;
@@ -167,9 +171,10 @@
     }
     .rectangles{
     width: 100%;
-    height: 120px;
-    margin-left: 0px;
+    height: 160px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
     position: relative;
     background: #E9E7E7;
     border-radius: 30px;
@@ -244,13 +249,47 @@
       margin-left: 15px;
       radius-border: 5%;
     }
+    .productImage{
+      width:170px;
+      height:120px;
+    }
+    .productImage img{
+    width: 130px;
+    height: 130px;
+    margin-left: 20px;
+    margin-top: 15px;
+    position: relative;
+    border-radius: 10px;
+
+    }
+    .productPrice{
+      width: 200px;
+      height:100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .productDescriptions{
+      width: 600px;
+      height:100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .container_rate{
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 
   <div class="Desktop1">
     <div class="Group5">
       <div class="Rectangle1"></div>
-      <div class="ECommerce">E-Commerce</div>
+      <a class="ECommerce" href="{% url 'Review:toReview' %}">E-Commerce</a>
 
       <div class="UserFill" >
         <a class="logout" href="{% url 'Account:logout' %}" style="text-decoration: none;">Logout</a>
@@ -266,15 +305,20 @@
 <div class="container">
     <div class="products">
     {% for order in orders %}
-      <div class="rectangles" data-product-id="{{ order.product.id }}">
-        <div class="productName">{{ order.product.product_name }}</div>
-        <div class="price">₱ {{ order.price}}</div>
-        <div class="quantity">Quantity: {{ order.quantity }}</div>
-        <img src="{{order.product.picture.url}}">
+      <div class="rectangles" data-product-id="{{ order.order_item_id }}">
+        <div class="productImage">
+          <img src="{{order.picture.url}}">
+        </div>
+        <div class="productDescriptions">
+          <div class="productName">{{ order.product_name }}</div>
+          <div class="price">Price: ₱ {{ order.price}}</div>
+          <div class="quantity">Quantity: {{ order.quantity }}</div>
+        </div>
+        <div class="container_rate">
         <a href="{% url 'Review:Review' orderitem_id=order.order_item_id%}">
-        <button class="btnRate" data-product-id="{{ order.product.product_id }}" type="button">
+        <button class="btnRate" data-product-id="{{ order.order_item_id }}" type="button">
           <div class="rate">Rate</div>
-        </button></a>
+        </button></a></div>
       </div>
     {% endfor %}
   </div>

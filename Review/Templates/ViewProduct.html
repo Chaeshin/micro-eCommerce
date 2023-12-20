@@ -40,7 +40,7 @@
 
     .containerProduct{
     top: 130px;
-    left: 140px;
+    left: 50px;
     background:#0047AB;
     position: absolute;
     width: 600px;
@@ -54,15 +54,16 @@
 
     .containerReview{
     top: 130px;
-    left: 840px;
+    left: 700px;
     background:#D9D9D9;
     position: absolute;
-    width: 600px;
+    width: 850px;
     height: 71%;
     border-radius: 7%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
     }
     .productName, .productDescription, .Description, .orderQuantity, .orderPrice{
       width:100%;
@@ -74,7 +75,14 @@
     .orderQuantity, .orderPrice{
       margin-top: 10px;
     }
+    .productDescriptions{
+      width: 1400px;
+      height:100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
 
+    }
     .Description p{
       width:100%;
       margin: 0;
@@ -93,14 +101,23 @@
     .productName p{
       width:100%;
       margin: 0;
+      margin-top: 20px;
       font-size: 35px;
       color:white;
       text-align-last:center;
     }
-
+    .productRatingLabel p{
+      width:100%;
+      margin: 0;
+      font-size: 45px;
+     margin-left: 50px;
+     margin-top: 20px;
+    }
     .productImage {
       width:150px;
       height: 150px;
+      margin-top: 10px;
+
     }
 
     .productImage img{
@@ -182,11 +199,20 @@
     }
 
     .rating {
-      font-size: 80px;
+      font-size: 60px;
       cursor: pointer;
-      margin-left: 80px;
+      margin-left: 50px;
     }
-
+    .rating p{
+      font-size: 40px;
+      margin: 0;
+      margin-top: 20px;
+    }
+    .reviewRating {
+      font-size: 40px;
+      cursor: pointer;
+      margin-left: 30px;
+    }
     .star {
       display: inline-block;
       margin-right: 5px;
@@ -226,6 +252,66 @@
       background-color: #0047AB; /* Replace 'yourBackgroundColor' with the desired color code */
       color: black;
     }
+
+    .productReviews{
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+      overflow: auto;
+    }
+    .products{
+      height: 90%;
+      width: 98%;
+      overflow: auto;
+    }
+
+    .productReview{
+    margin-top:5px;
+      margin-left: 30px;
+      height: 38px;
+      overflow: hidden;
+    }
+
+    .rectangles{
+    width: 95%;
+    height: 70px;
+    margin-left: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background: #E9E7E7;
+    border-radius: 30px;
+    }
+
+    .rate{
+      width: 100%;
+      text-align: end;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-right: 20px;
+    }
+
+    .dateTime{
+      margin: 0;
+    }
+
+    .dateTime p{
+      margin: 0;
+      height: 100%;
+      margin-left: 30px;
+    }
+
+    .reviewLabel p {
+    width: 100%;
+    margin: 0;
+    font-size: 35px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
   </style>
 </head>
 <body>
@@ -243,58 +329,81 @@
   </div>
 
   <div class="containerProduct" >
-    <div class="Description"> <p><strong>Product Description</strong></p> </div>
-    <div class="productImage"> <img src="{{product_image.url}}"> </div>
-    <div class="productName"> <p><strong>{{product_name }}</strong> </p> </div>
-    <div class="productDescription"> <p><strong>Description:</strong><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{product_description }}</p> </div>
-    <div class="orderQuantity"> <p><strong>Quantity:</strong> {{ order_quantity }}</p> </div>
-    <div class="orderPrice"> <p><strong>Price:</strong> ₱{{ order_price }}</p> </div>
+    <div class="productName"> <p><strong>{{ product_name }}</strong> </p> </div>
+    <div class="productImage"> <img src="{{review_product.url}}"> </div>
+    <div class="productDescription"> <p><strong>Description:</strong><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ product_description }}</p> </div>
+    <div class="orderQuantity"> <p><strong>Total Sold:</strong> {{ product_total_sale }}</p> </div>
+    <div class="orderPrice"> <p><strong>Price:</strong> ₱ {{ product_price }}</p> </div>
   </div>
-  <form id="reviewForm" method="post">
-  {% csrf_token %}
-    <input type="hidden" name="orderitem_id" value="{{ orderitem_id }}">
     <div class="containerReview">
-      <div class="comment">
-        <textarea class="non-resizable" id="comment" name="comment" rows="13" cols="45" placeholder="Enter Review Comment" maxlength="255"></textarea>
+      <div class="productRatingLabel"><p>Product Rating</p></div>
+        <div class="rating" id="dynamic-rating">
+    <!-- Stars will be dynamically added here based on the rate value -->
+          <input type="hidden" name="rating" id="rating" value="{{product_average_rating}}">
+        </div>
+      <div class="reviewLabel"><p>Product Reviews</p></div>
+      <div class="productReviews">
+      <div class="products">
+    {% for review in reviews %}
+      <div class="rectangles" data-product-id="{{ review.review_id }}">
+        <div class="productDescriptions">
+          <div class="productReview">{{ review.review_comment }}</div>
+          <div class="dateTime"><p>{{ review.review_date }} | {{ review.review_time }}</p></div>
+        </div>
+        <div class="rate">
+
+          <div class="reviewRating" id="dynamic-rating-{{ review.review_id }}">
+    <!-- Stars will be dynamically added here based on the rate value -->
+            <input type="hidden" name="rating" id="rates" value="{{ review.review_rate }}">
+          </div>
+          <script>
+              // JavaScript for dynamically setting star colors based on rate value
+              document.addEventListener('DOMContentLoaded', function () {
+                  const ratingContainer = document.getElementById('dynamic-rating-{{ review.review_id }}');
+                  const rateValue = parseInt(ratingContainer.querySelector('input[name="rating"]').value);
+
+                  for (let i = 1; i <= 5; i++) {
+                      const star = document.createElement('span');
+                      star.classList.add('star');
+                      star.innerHTML = '★';
+
+                      if (i <= rateValue) {
+                          star.style.color = 'gold'; // Set the color for rated stars
+                      }
+
+                      ratingContainer.appendChild(star);
+                  }
+              });
+          </script>
+        </div>
+
       </div>
-      <div class="rating">
-        <span class="star" data-rating="1">★</span>
-        <span class="star" data-rating="2">★</span>
-        <span class="star" data-rating="3">★</span>
-        <span class="star" data-rating="4">★</span>
-        <span class="star" data-rating="5">★</span>
-        <input type="hidden" name="rating" id="rating">
-      </div>
-      <div class="btnSubmit">
-        <button type="submit">Submit</button>
-      </div>
+
+    {% endfor %}
+  </div>
+        </div>
     </div>
-  </form>
   <div class="footer">
     <div class="Rectangle10"></div>
     <div class="ECommerceFooter">E-Commerce</div>
   </div>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const stars = document.querySelectorAll(".star");
-    const ratingInput = document.getElementById('rating');
-    const comment = document.getElementById('comment');
+    document.addEventListener('DOMContentLoaded', function () {
+      const ratingContainer = document.getElementById('dynamic-rating');
+      const rateValue = parseInt(document.getElementById('rating').value);
 
-  stars.forEach((star) => {
-    star.addEventListener("click", function () {
-      const rating = this.dataset.rating;
-      document.getElementById("rating").value = rating;
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.classList.add('star');
+        star.innerHTML = '★';
 
-      // Remove 'selected' class from all stars
-      stars.forEach((s) => s.classList.remove("selected"));
+        if (i <= rateValue) {
+          star.style.color = 'gold'; // Set the color for rated stars
+        }
 
-      // Add 'selected' class to the clicked star and previous stars
-      let clickedStarIndex = Array.from(stars).indexOf(this);
-      for (let i = 0; i <= clickedStarIndex; i++) {
-        stars[i].classList.add("selected");
+        ratingContainer.appendChild(star);
       }
     });
-  });
-});</script>
+</script>
 </body>
 </html>
